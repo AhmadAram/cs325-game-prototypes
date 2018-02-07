@@ -58,7 +58,7 @@ window.onload = function() {
         
         bullet = game.add.group();
         bullet.enableBody = true;
-        bullet.physicsBodyType = Phaser.physics.ARCADE;
+        bullet.physicsBodyType = Phaser.physics.arcade;
         
         for(var i =0;i<20;i++){
             var b = bullet.create(0,0,'bullet');
