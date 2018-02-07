@@ -93,10 +93,6 @@ window.onload = function() {
             sprite.body.velocity = -100;
 
         }
-        if(cursors.up.isDown){
-            sprite.body.velocity.x = 0;
-            sprite.body.velocity.y = 100;
-        }
         if(cursors.right.isDown){
             sprite.body.velocity.x = 100;
         }
