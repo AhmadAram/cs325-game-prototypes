@@ -10,21 +10,21 @@ window.onload = function() {
     // loading functions to reflect where you are putting the assets.
     // All loading functions will typically all be found inside "preload()".
     
-    var game = new Phaser.Game( 1000, 800, Phaser.CANVAS, 'game', { preload: preload, create: create, update: update } );
+    var game = new Phaser.Game( 800, 800, Phaser.CANVAS, 'game', { preload: preload, create: create, update: update } );
     //changed these parameters to increase the window size
     function preload() {//used to load everything like asssets into the game before hand
         // Load an image and call it 'logo'.
         game.load.image('character1','assets/char1.png');//character shooting the bullets
         game.load.image('bullet','assets/bullet1.png');//bullet being shot by character
         game.load.spritesheet('robots','assets/sprites/robots.png',32,32);
-        
+    }  
         var sprite;//variable for sprites
         var bullets;//variable for bullet
         var robots;//variable for player
         var cursors;//variable for controls
         var bulletTime = 0;
         var bullet;//more then one bullet
-    }
+    
     
     
     
