@@ -110,7 +110,7 @@ window.onload = function() {
             if(bullets)
             {
                 bullets.reset(sprite.x + 6,sprite.y-8);
-                bullets.body.velocity.y = -300
+                bullets.body.velocity.y = -300;
                 bulletTime = game.time.now +150;
             }
         }
