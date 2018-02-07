@@ -119,8 +119,8 @@ window.onload = function() {
         bullet.kill();//kills the bullet if it goes off screen
     }
 
-    function collisionHandler(bullet,robots){
-        bullet.kill();
+    function collisionHandler(bullets,robots){
+        bullets.kill();
         robots.kill();
         score++;
     }
