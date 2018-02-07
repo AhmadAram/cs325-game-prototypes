@@ -71,7 +71,7 @@ window.onload = function() {
         sprite = game.add.sprite(400,500,'character1');
         game.physics.enable(sprite,Phaser.Physics.ARCADE);
 
-        cursors = game.intput.keyboard.createCursorKeys();
+        cursors = game.input.keyboard.createCursorKeys();
         game.input.keyboard.addKeyCapture([Phaser.Keyboard.SPACEBAR]);
 
     }
