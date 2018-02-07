@@ -105,12 +105,12 @@ window.onload = function() {
     function fireBullet(){
         if(game.time.now > bulletTime)
         {
-            bullet = bullets.getFirstExists(false);
+            bullets = bullet.getFirstExists(false);
 
-            if(bullet)
+            if(bullets)
             {
-                bullet.reset(sprite.x + 6,sprite.y-8);
-                bullet.body.velocity.y = -300
+                bullets.reset(sprite.x + 6,sprite.y-8);
+                bullets.body.velocity.y = -300
                 bulletTime = game.time.now +150;
             }
         }
