@@ -53,7 +53,7 @@ window.onload = function() {
         for(var i = 0;i<50;i++){
             var c = robots.create(game.world.randomX,Math.random() * 500,'robots',game.rnd.integerInRange(0,36));
             c.name = 'rob' +i;
-            c.body.immovable = false;
+            c.body.immovable = true;
         }
         
         bullet = game.add.group();
