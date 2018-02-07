@@ -89,10 +89,10 @@ window.onload = function() {
         //sprite.body.velocity.x=0;
         //sprite.body.velocity.y=0;//these two tell the sprite where to start inistially
 
-        /*if(cursors.left.isDown){// if left on the keyboard is pressed
+        if(cursors.left.isDown){// if left on the keyboard is pressed
             sprite.body.velocity = -100;
 
-        }*/
+        }
         if(cursors.right.isDown){
             sprite.body.velocity.x = 100;
         }
