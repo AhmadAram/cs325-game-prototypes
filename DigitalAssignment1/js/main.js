@@ -56,12 +56,12 @@ window.onload = function() {
             c.body.immovable = false;
         }
         
-        bullets = game.add.group();
-        bullets.enableBody = true;
-        bullets.physicsBodyType = Phaser.physics.ARCADE;
+        bullet = game.add.group();
+        bullet.enableBody = true;
+        bullet.physicsBodyType = Phaser.physics.ARCADE;
         
         for(var i =0;i<20;i++){
-            var b = bullets.create(0,0,'bullet');
+            var b = bullet.create(0,0,'bullet');
             b.name = 'bullet' +i;
             b.exists = false;
             b.visible = false;
@@ -86,8 +86,8 @@ window.onload = function() {
         //bouncy.rotation = game.physics.arcade.accelerateToPointer( bouncy, game.input.activePointer, 500, 500, 500 );
         game.physics.arcade.overlap(bullets,robots,collisionHandler,null,this);
 
-        sprite.body.velocity.x=0;
-        sprite.body.velocity.y=0;//these two tell the sprite where to start inistially
+        //sprite.body.velocity.x=0;
+        //sprite.body.velocity.y=0;//these two tell the sprite where to start inistially
 
         if(cursors.left.isDown){// if left on the keyboard is pressed
             sprite.body.velocity = -100;
