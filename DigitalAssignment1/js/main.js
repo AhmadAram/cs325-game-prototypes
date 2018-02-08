@@ -105,12 +105,12 @@ window.onload = function() {
     function fireBullet(){
         if(game.time.now > bulletTime)
         {
-            bullets = bullet.getFirstExists(false);
+            bullet = bullets.getFirstExists(false);
 
-            if(bullets)
+            if(bullet)
             {
-                bullets.reset(sprite.x + 6,sprite.y - 8);
-                bullets.body.velocity.y = -300;
+                bullet.reset(sprite.x + 6,sprite.y - 8);
+                bullet.body.velocity.y = -300;
                 bulletTime = game.time.now +150;
             }
         }
@@ -119,8 +119,8 @@ window.onload = function() {
         bullet.kill();//kills the bullet if it goes off screen
     }
 
-    function collisionHandler(bullets,robots){
-        bullets.kill();
+    function collisionHandler(bullet,robots){
+        bullet.kill();
         robots.kill();
         score++;
     }
