@@ -68,7 +68,7 @@ window.onload = function() {
             b.checkWorldBounds = true;
             b.events.onOutOfBounds.add(resetBullet,this);
         }
-        sprite = game.add.sprite(400,500,'character1');
+        sprite = game.add.sprite(400,550,'character1');
         game.physics.enable(sprite,Phaser.Physics.ARCADE);
 
         cursors = game.input.keyboard.createCursorKeys();
@@ -86,15 +86,15 @@ window.onload = function() {
         //bouncy.rotation = game.physics.arcade.accelerateToPointer( bouncy, game.input.activePointer, 500, 500, 500 );
         game.physics.arcade.overlap(bullets,robots,collisionHandler,null,this);
 
-        //sprite.body.velocity.x=0;
-        //sprite.body.velocity.y=0;//these two tell the sprite where to start inistially
+        sprite.body.velocity.x=0;
+        sprite.body.velocity.y=0;//these two tell the sprite where to start inistially
 
         if(cursors.left.isDown){// if left on the keyboard is pressed
-            sprite.body.velocity = -100;
+            sprite.body.velocity.x = -100;
 
         }
         if(cursors.right.isDown){
-            sprite.body.velocity = 100;
+            sprite.body.velocity.x = 100;
         }
         if(game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR))
         {
@@ -109,7 +109,7 @@ window.onload = function() {
 
             if(bullets)
             {
-                bullets.reset(sprite.x + 6,sprite.y-8);
+                bullets.reset(sprite.x + 6,sprite.y - 8);
                 bullets.body.velocity.y = -300;
                 bulletTime = game.time.now +150;
             }
