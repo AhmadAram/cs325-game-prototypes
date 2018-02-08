@@ -1,4 +1,5 @@
 "use strict";
+var score=0;
 
 window.onload = function() {
     // You can copy-and-paste the code from any of the examples at http://examples.phaser.io here.
@@ -23,9 +24,7 @@ window.onload = function() {
         var robots;//variable for player
         var cursors;//variable for controls
         var bulletTime = 0;
-        var bullet;//more then one bullet assigned to the png
-        var score=0;
-    
+        var bullet;//more then one bullet assigned to the png    
     
     
     function create() {
