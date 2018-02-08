@@ -23,7 +23,7 @@ window.onload = function() {
         var robots;//variable for player
         var cursors;//variable for controls
         var bulletTime = 0;
-        var bullet;//more then one bullet
+        var bullet;//more then one bullet assigned to the png
         var score=0;
     
     
@@ -46,6 +46,8 @@ window.onload = function() {
         var style = { font: "25px Verdana", fill: "#9999ff", align: "center" };
         var text = game.add.text( game.world.centerX, 15, score, style );
         text.anchor.setTo( 0.5, 0.0 );
+        
+        
         robots = game.add.group();
         robots.enableBody = true;
         robots.physicsBodyType = Phaser.Physics.ARCADE;
@@ -56,12 +58,12 @@ window.onload = function() {
             c.body.immovable = true;
         }
         
-        bullet = game.add.group();
-        bullet.enableBody = true;
-        bullet.physicsBodyType = Phaser.Physics.Arcade;
+        bullets = game.add.group();
+        bullets.enableBody = true;
+        bullets.physicsBodyType = Phaser.Physics.Arcade;
         
         for(var i =0;i<20;i++){
-            var b = bullet.create(0,0,'bullet');
+            var b = bullets.create(0,0,'bullet');
             b.name = 'bullet' +i;
             b.exists = false;
             b.visible = false;
