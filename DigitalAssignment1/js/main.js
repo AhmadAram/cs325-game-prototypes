@@ -94,7 +94,7 @@ window.onload = function() {
 
         }
         if(cursors.right.isDown){
-            sprite.body.velocity.x = 100;
+            sprite.body.velocity = 100;
         }
         if(game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR))
         {
