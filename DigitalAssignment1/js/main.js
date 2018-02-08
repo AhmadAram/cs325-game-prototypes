@@ -60,16 +60,17 @@ window.onload = function() {
         
         bullets = game.add.group();
         bullets.enableBody = true;
-        bullets.physicsBodyType = Phaser.Physics.Arcade;
-        
-        for(var i =0;i<20;i++){
-            var b = bullets.create(0,0,'bullet');
-            b.name = 'bullet' +i;
-            b.exists = false;
-            b.visible = false;
-            b.checkWorldBounds = true;
-            b.events.onOutOfBounds.add(resetBullet,this);
-        }
+        bullets.physicsBodyType = Phaser.Physics.ARCADE;
+
+    for (var i = 0; i < 20; i++)
+    {
+        var b = bullets.create(0, 0, 'bullet');
+        b.name = 'bullet' + i;
+        b.exists = false;
+        b.visible = false;
+        b.checkWorldBounds = true;
+        b.events.onOutOfBounds.add(resetBullet, this);
+    }
         sprite = game.add.sprite(400,550,'character1');
         game.physics.enable(sprite,Phaser.Physics.ARCADE);
 
@@ -104,18 +105,20 @@ window.onload = function() {
         }
     }
 
-    function fireBullet(){
-        if(game.time.now > bulletTime)
+    function fireBullet () {
+
+        if (game.time.now > bulletTime)
         {
             bullet = bullets.getFirstExists(false);
-
-            if(bullet)
+    
+            if (bullet)
             {
-                bullet.reset(sprite.x + 6,sprite.y - 8);
+                bullet.reset(sprite.x + 6, sprite.y - 8);
                 bullet.body.velocity.y = -300;
-                bulletTime = game.time.now +150;
+                bulletTime = game.time.now + 150;
             }
         }
+    
     }
     function resetBullet(bullet){
         bullet.kill();//kills the bullet if it goes off screen
