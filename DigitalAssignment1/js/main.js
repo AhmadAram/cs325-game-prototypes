@@ -24,7 +24,8 @@ window.onload = function() {
         var robots;//variable for player
         var cursors;//variable for controls
         var bulletTime = 0;
-        var bullet;//more then one bullet assigned to the png    
+        var bullet;//more then one bullet assigned to the png   
+        var audio = new Audio('golf.mp3'); 
     
     
     function create() {
@@ -98,6 +99,12 @@ window.onload = function() {
         if(cursors.right.isDown){
             sprite.body.velocity.x = 100;
         }
+        if(cursors.up.isDown){
+            sprite.body.velocity.y = 100;
+        }
+        if(cursors.down.isDown){
+            sprite.body.velocity.y = -100;
+        }
         if(game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR))
         {
             fireBullet();//calls the fire bullet function
@@ -126,6 +133,7 @@ window.onload = function() {
     function collisionHandler(bullet,robots){
         bullet.kill();
         robots.kill();
-        score++;
+        score++;//update scoreboard
+        audio.play();
     }
 }
