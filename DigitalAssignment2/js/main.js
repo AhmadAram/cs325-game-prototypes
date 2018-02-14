@@ -32,13 +32,13 @@ window.onload = function() {
     var chicken
     var egg
     var human
-
+    var sprite
     //var map;
     //var layer1;
     //var bouncy;
     
     function create() {
-        egg = game.add.egg(1,'bullet')//create a bullet using the egg picture
+        egg = game.add.weapon(1,'bullet')//create a bullet using the egg picture
 
         //when the egg leaves the world it will be killed
         egg.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;
@@ -117,5 +117,10 @@ window.onload = function() {
         // This function returns the rotation angle that makes it visually match its
         // new trajectory.
         //bouncy.rotation = game.physics.arcade.accelerateToPointer( bouncy, this.game.input.activePointer, 500, 500, 500 );
+    }
+    function render() {
+
+        weapon.debug();
+    
     }
 };
