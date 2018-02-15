@@ -1,126 +1,176 @@
-window.onload = function() {
-    // You might want to start with a template that uses GameStates:
-    //     https://github.com/photonstorm/phaser/tree/v2.6.2/resources/Project%20Templates/Basic
-    
-    // You can copy-and-paste the code from any of the examples at http://examples.phaser.io here.
-    // You will need to change the fourth parameter to "new Phaser.Game()" from
-    // 'phaser-example' to 'game', which is the id of the HTML element where we
-    // want the game to go.
-    // The assets (and code) can be found at: https://github.com/photonstorm/phaser/tree/master/examples/assets
-    // You will need to change the paths you pass to "game.load.image()" or any other
-    // loading functions to reflect where you are putting the assets.
-    // All loading functions will typically all be found inside "preload()".
-    
-    "use strict";
-    
-    var game = new Phaser.Game( 800, 600, Phaser.AUTO, 'game', { preload: preload, create: create, update: update } );
-    
-    function preload() {
-        // Load an image and call it 'logo'.
-        game.load.image( 'chicken', 'assets/chickenman.png' );
-        game.load.image('egg','assets/egg.png');
-        game.load.image('human','assets/human.png');
-        // load a tilemap and call it 'map'.
-        // from .json file
+var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create });
 
-        // alternatively, from .csv file
-        //game.load.tilemap('map', 'assets/tilemap_example.csv', null, Phaser.Tilemap.CSV);
-        
-        //load tiles for map
-        //game.load.image('tiles', 'assets/tiles.png');
+var PIECE_WIDTH = 150,//how large each piece will be 
+    PIECE_HEIGHT = 150,
+    BOARD_COLS,//amount of rows and columns for the puzzle
+    BOARD_ROWS;
+    endgame;//variable to hold the sound file
+
+var piecesGroup,
+    piecesAmount,
+    shuffledIndexArray = [];
+
+function preload() {
+    game.load.sound("endgame","assets/chicken.mp3");
+    game.load.spritesheet("background", "assets/chicken.jpg", PIECE_WIDTH, PIECE_HEIGHT);
+}
+
+function create() {
+    prepareBoard();
+    endgame = new sound(chicken.mp3);//sound for when the puzzle is complete 
+}
+
+function prepareBoard() {
+
+    var piecesIndex = 0,
+        i, j,
+        piece;
+
+    BOARD_COLS = Math.floor(game.world.width / PIECE_WIDTH);//amount of columns is wid
+    BOARD_ROWS = Math.floor(game.world.height / PIECE_HEIGHT);
+
+    piecesAmount = BOARD_COLS * BOARD_ROWS;
+
+    shuffledIndexArray = createShuffledIndexArray();
+
+    piecesGroup = game.add.group();
+
+    for (i = 0; i < BOARD_ROWS; i++)
+    {
+        for (j = 0; j < BOARD_COLS; j++)
+        {
+            if (shuffledIndexArray[piecesIndex]) {
+                piece = piecesGroup.create(j * PIECE_WIDTH, i * PIECE_HEIGHT, "background", shuffledIndexArray[piecesIndex]);
+            }
+            else { //initial position of black piece
+                piece = piecesGroup.create(j * PIECE_WIDTH, i * PIECE_HEIGHT);
+                piece.black = true;
+            }
+            piece.name = 'piece' + i.toString() + 'x' + j.toString();
+            piece.currentIndex = piecesIndex;
+            piece.destIndex = shuffledIndexArray[piecesIndex];
+            piece.inputEnabled = true;
+            piece.events.onInputDown.add(selectPiece, this);
+            piece.posX = j;
+            piece.posY = i;
+            piecesIndex++;
+        }
     }
-    var chicken
-    var egg
-    var human
-    var sprite
-    //var map;
-    //var layer1;
-    //var bouncy;
-    
-    function create() {
-        egg = game.add.weapon(1,'bullet')//create a bullet using the egg picture
 
-        //when the egg leaves the world it will be killed
-        egg.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;
+}
 
-        weapon.bulletAngleOffset = 0;
+function selectPiece(piece) {
 
-        weapon.bulletSpeed = 400;
-        sprite = this.add.sprite(320,500,'chicken');
+    var blackPiece = canMove(piece);
 
-        game.physics.arcade.enable(sprite);
-
-       weapon.trackSprite(sprite,14,0);
-
-       cursors = this.input.keyboard.createCursorKeys();
-
-       fireButton = this.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR);
-
-
-        
-        // Create the map. 
-        //map = game.add.tilemap('map');
-        // for csv files specify the tile size.
-        //map = game.add.tilemap('map', 32, 32);
-
-        //add tiles
-        //map.addTilesetImage('tiles');
-        
-        // Create a layer from the map
-        //using the layer name given in the .json file
-        //layer1 = map.createLayer('Tile Layer 1');
-        //for csv files
-        //layer1 = map.createLayer(0);
-        
-        //  Resize the world
-        //layer1.resizeWorld();
-        
-        // Turn on the arcade physics engine for this sprite.
-        // Create a sprite at the center of the screen using the 'logo' image.
-        //bouncy = game.add.sprite( game.world.centerX, game.world.centerY, 'logo' );
-        // Anchor the sprite at its center, as opposed to its top-left corner.
-        // so it will be truly centered.
-        //bouncy.anchor.setTo( 0.5, 0.5 );
-        
-        //game.physics.enable( bouncy, Phaser.Physics.ARCADE );
-        // Make it bounce off of the world bounds.
-        //bouncy.body.collideWorldBounds = true;
-        
-        // Add some text using a CSS style.
-        // Center it in X, and position its top 15 pixels from the top of the world.
-        //var style = { font: "25px Verdana", fill: "#9999ff", align: "center" };
-        //var text = game.add.text( 400, 15, "Build something amazing.", style );
-        //text.fixedToCamera = true;
-        //text.anchor.setTo( 0.5, 0.0 );
-        
-        //game.camera.follow(bouncy);
-        
+    //if there is a black piece in neighborhood
+    if (blackPiece) {
+        movePiece(piece, blackPiece);
     }
-    
-    function update() {
-       sprite.body.velocity.x = 0;
-       if(cursors.up.isDown){
-           sprite.body.velocity.y = 200;//move the character up if the up arrow is pressed
 
-       }
-       if(cursors.right.isDown){
-           sprites.body.velocity.y = -200;//move the character down if the down key is pressed
-       }
-       if(fireButton.isDown){//when the spacebar is pressed fire the bullet
-           weapon.fire();
-       }
+}
 
-       
-        // Accelerate the 'logo' sprite towards the cursor,
-        // accelerating at 500 pixels/second and moving no faster than 500 pixels/second
-        // in X or Y.
-        // This function returns the rotation angle that makes it visually match its
-        // new trajectory.
-        //bouncy.rotation = game.physics.arcade.accelerateToPointer( bouncy, this.game.input.activePointer, 500, 500, 500 );
+function canMove(piece) {
+
+    var foundBlackElem = false;
+
+    piecesGroup.children.forEach(function(element) {
+        if (element.posX === (piece.posX - 1) && element.posY === piece.posY && element.black ||
+            element.posX === (piece.posX + 1) && element.posY === piece.posY && element.black ||
+            element.posY === (piece.posY - 1) && element.posX === piece.posX && element.black ||
+            element.posY === (piece.posY + 1) && element.posX === piece.posX && element.black) {
+            foundBlackElem = element;
+            return;
+        }
+    });
+
+    return foundBlackElem;
+}
+
+function movePiece(piece, blackPiece) {
+
+    var tmpPiece = {
+        posX: piece.posX,
+        posY: piece.posY,
+        currentIndex: piece.currentIndex
+    };
+
+    game.add.tween(piece).to({x: blackPiece.posX * PIECE_WIDTH, y: blackPiece.posY * PIECE_HEIGHT}, 300, Phaser.Easing.Linear.None, true);
+
+    //change places of piece and blackPiece
+    piece.posX = blackPiece.posX;
+    piece.posY = blackPiece.posY;
+    piece.currentIndex = blackPiece.currentIndex;
+    piece.name ='piece' + piece.posX.toString() + 'x' + piece.posY.toString();
+
+    //piece is the new black
+    blackPiece.posX = tmpPiece.posX;
+    blackPiece.posY = tmpPiece.posY;
+    blackPiece.currentIndex = tmpPiece.currentIndex;
+    blackPiece.name ='piece' + blackPiece.posX.toString() + 'x' + blackPiece.posY.toString();
+
+    //after every move check if puzzle is completed
+    checkIfFinished();
+}
+
+function checkIfFinished() {//constantly check if the puzzle is completed
+
+    var isFinished = true;
+
+    piecesGroup.children.forEach(function(element) {
+        if (element.currentIndex !== element.destIndex) {
+            isFinished = false;
+            return;
+        }
+    });
+
+    if (isFinished) {
+        showFinishedText();
+        endgame.play()//sound for when the game ends
     }
-    function render() {
 
-        weapon.debug();
-    
+}
+
+function showFinishedText() {
+
+    var style = { font: "40px Arial", fill: "#000", align: "center"};
+
+    var text = game.add.text(game.world.centerX, game.world.centerY, "bock,bock,bock,bock,bock,begowwwwk", style);
+
+    text.anchor.set(0.5);
+
+}
+
+function createShuffledIndexArray() {//shuffle the pieces to be in a random order
+
+    var indexArray = [];
+
+    for (var i = 0; i < piecesAmount; i++)
+    {
+        indexArray.push(i);
     }
-};
+
+    return shuffle(indexArray);
+
+}
+
+function shuffle(array) {//sort the pieces in the array randomly
+
+    var counter = array.length,
+        temp,
+        index;
+
+    while (counter > 0)
+    {
+        index = Math.floor(Math.random() * counter);
+
+        counter--;
+
+        temp = array[counter];
+        array[counter] = array[index];
+        array[index] = temp;
+    }
+
+    return array;
+    
+}
