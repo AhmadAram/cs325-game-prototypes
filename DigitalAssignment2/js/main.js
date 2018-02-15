@@ -4,20 +4,19 @@ var PIECE_WIDTH = 150,//how large each piece will be
     PIECE_HEIGHT = 150,
     BOARD_COLS,//amount of rows and columns for the puzzle
     BOARD_ROWS;
-    endgame;//variable to hold the sound file
+    var endgame;//variable to hold the sound file
 
 var piecesGroup,
     piecesAmount,
     shuffledIndexArray = [];
 
 function preload() {
-    game.load.sound("endgame","assets/chicken.mp3");
     game.load.spritesheet("background", "assets/chicken.jpg", PIECE_WIDTH, PIECE_HEIGHT);
 }
 
 function create() {
     prepareBoard();
-    endgame = new sound(chicken.mp3);//sound for when the puzzle is complete 
+    
 }
 
 function prepareBoard() {
@@ -116,6 +115,7 @@ function movePiece(piece, blackPiece) {
 function checkIfFinished() {//constantly check if the puzzle is completed
 
     var isFinished = true;
+    endgame = new sound(chicken.mp3);//sound for when the puzzle is complete 
 
     piecesGroup.children.forEach(function(element) {
         if (element.currentIndex !== element.destIndex) {
