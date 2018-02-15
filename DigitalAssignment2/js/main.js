@@ -1,7 +1,7 @@
 var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create });
 
-var PIECE_WIDTH = 150,//how large each piece will be 
-    PIECE_HEIGHT = 150,
+var PIECE_WIDTH = 200,//how large each piece will be 
+    PIECE_HEIGHT = 200,
     BOARD_COLS,//amount of rows and columns for the puzzle
     BOARD_ROWS;
     var endgame;//variable to hold the sound file
@@ -126,7 +126,6 @@ function checkIfFinished() {//constantly check if the puzzle is completed
 
     if (isFinished) {
         showFinishedText();
-        endgame.play()//sound for when the game ends
     }
 
 }
@@ -136,7 +135,7 @@ function showFinishedText() {
     var style = { font: "40px Arial", fill: "#000", align: "center"};
 
     var text = game.add.text(game.world.centerX, game.world.centerY, "bock,bock,bock,bock,bock,begowwwwk", style);
-
+    endgame.play()//sound for when the game ends
     text.anchor.set(0.5);
 
 }
