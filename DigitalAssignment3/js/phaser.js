@@ -83567,7 +83567,7 @@ Phaser.Utils.Debug = function (game) {
     this.sprite = null;
 
     /**
-    * @property {Phaser.BitmapData} bmd - In WebGL mode this BitmapData contains a copy of the debug canvas.
+    * @property {Phaser.BitmapData} bitmap_data - In WebGL mode this BitmapData contains a copy of the debug canvas.
     */
     this.bmd = null;
 
@@ -86005,7 +86005,7 @@ Phaser.Create = function (game) {
     this.game = game;
 
     /**
-    * @property {Phaser.BitmapData} bmd - The internal BitmapData Create uses to generate textures from.
+    * @property {Phaser.BitmapData} bitmap_data - The internal BitmapData Create uses to generate textures from.
     */
     this.bmd = null;
 
@@ -86115,7 +86115,7 @@ Phaser.Create.prototype = {
         var w = data[0].length * pixelWidth;
         var h = data.length * pixelHeight;
 
-        //  No bmd? Let's make one
+        //  No bitmap_data? Let's make one
         if (this.bmd === null)
         {
             this.bmd = this.game.make.bitmapData();
@@ -86170,7 +86170,7 @@ Phaser.Create.prototype = {
 
         if (generateTexture === undefined) { generateTexture = true; }
 
-        //  No bmd? Let's make one
+        //  No bitmap_data? Let's make one
         if (this.bmd === null)
         {
             this.bmd = this.game.make.bitmapData();
@@ -86199,7 +86199,7 @@ Phaser.Create.prototype = {
     },
 
     /**
-     * Copies the contents of {@link bmd Create's canvas} to the given BitmapData object, or a new BitmapData object.
+     * Copies the contents of {@link bitmap_data Create's canvas} to the given BitmapData object, or a new BitmapData object.
      *
      * @param {Phaser.BitmapData} [dest] - The BitmapData receiving the copied image.
      * @param {number} [x=0] - The x coordinate to translate to before drawing.
