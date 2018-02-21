@@ -5,7 +5,7 @@ function make_main_game_state( game )
     function preload() {
         // Load an image and call it 'logo'.
         game.load.image( 'logo', 'assets/phaser.png' );
-        game.load.image( 'background','assets/stars.png');
+        game.load.image( 'background','assets/stage.png');
         //game.load.sprite('dance',assets/sprites/dancer.png);
 
     }
@@ -24,7 +24,7 @@ function make_main_game_state( game )
         }
         bitmap_data = game.make.bitmapData(800,200);
         bitmap_data.context.font = '64ox Arial';
-        bitmap_data.context.fillStyle = '#ffffff';
+        bitmap_data.context.fillStyle = '#0000ff';
         bitmap_data.context.fillText(firstWord,64,64);
         bitmap_data.addToWorld();
 
@@ -45,7 +45,7 @@ function make_main_game_state( game )
         var x = 64;
 
         for(var i =0;i<firstWord.length;i++){
-            var letter = word.charAt(i);
+            var letter = firstWord.charAt(i);
 
                 if(char == letter){}
                 correct_letters[letter] = true;
