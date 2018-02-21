@@ -19,11 +19,14 @@ function make_main_game_state( game )
     function create() {
         //storing the phrase inside of the correct array and setting them to false
         //or not typed.
+        //loading the background
+        var background = game.add.sprite(80,0,'background');
+
         for(var i = 0;i<firstWord.length;i++){
             correct_letters[firstWord[i]] = false;
         }
         bitmap_data = game.make.bitmapData(800,200);
-        bitmap_data.context.font = '64ox Arial';
+        bitmap_data.context.font = '128px Arial';
         bitmap_data.context.fillStyle = '#0000ff';
         bitmap_data.context.fillText(firstWord,64,64);
         bitmap_data.addToWorld();
