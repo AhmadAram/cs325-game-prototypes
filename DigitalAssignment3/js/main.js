@@ -6,7 +6,7 @@ function make_main_game_state( game )
         // Load an image and call it 'logo'.
         game.load.image( 'logo', 'assets/phaser.png' );
         game.load.image( 'background','assets/stars.png');
-        game.load.sprite('dance',assets/sprites/dancer.png);
+        //game.load.sprite('dance',assets/sprites/dancer.png);
 
     }
     //defining both phrases that will need to be typed
