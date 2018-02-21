@@ -5,7 +5,6 @@ var word = "dance";
 var correct = [];
 var bitmap_data;
 function preload(){
-    game.load.image('background','assets/stage.png');
 }
 function create() {
     //var back = game.add.image(800,0,'background');
