@@ -11,7 +11,7 @@ function make_main_game_state( game )
     }
     //defining both phrases that will need to be typed
     var firstWord = "dance";
-    
+
     var bitmap_data;
     //defining array that is empty
     var correct_letters = [];
@@ -47,7 +47,7 @@ function make_main_game_state( game )
         for(var i =0;i<firstWord.length;i++){
             var letter = firstWord.charAt(i);
 
-                if(char == letter){}
+                if(char === letter){}
                 correct_letters[letter] = true;
         }
         if(correct_letters[letter]){
