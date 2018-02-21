@@ -8,7 +8,7 @@ function preload(){
     game.load.image('background','assets/stage.png');
 }
 function create() {
-    var back = game.add.sprite(80,0,'background');
+    var back = game.add.sprite(800,0,'background');
     //  Here we'll create a simple array where each letter of the word to enter represents one element:
     for (var i = 0; i < word.length; i++)
     {
@@ -26,7 +26,9 @@ function create() {
     game.input.keyboard.addCallbacks(this, null, null, keyPress);
 
 }
-
+function update(){
+    if
+}
 function keyPress(char) {
 
     //  Clear the BMD
