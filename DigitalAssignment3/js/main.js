@@ -12,24 +12,24 @@ function make_main_game_state( game )
     //defining both phrases that will need to be typed
     var firstWord = "dance the night away";
     var secondWord = "tonight is the talent show";
+    var bitmap_data;
+    //defining array that is empty
+    var correct_letters = [];
     
     function create() {
-        // Create a sprite at the center of the screen using the 'logo' image.
-        //bouncy = game.add.sprite( game.world.centerX, game.world.centerY, 'logo' );
-        // Anchor the sprite at its center, as opposed to its top-left corner.
-        // so it will be truly centered.
-        //bouncy.anchor.setTo( 0.5, 0.5 );
-        
-        // Turn on the arcade physics engine for this sprite.
-        //game.physics.enable( bouncy, Phaser.Physics.ARCADE );
-        // Make it bounce off of the world bounds.
-        //bouncy.body.collideWorldBounds = true;
-        
-        // Add some text using a CSS style.
-        // Center it in X, and position its top 15 pixels from the top of the world.
-        //var style = { font: "25px Verdana", fill: "#9999ff", align: "center" };
-        //var text = game.add.text( game.world.centerX, 15, "Build something amazing.", style );
-        //text.anchor.setTo( 0.5, 0.0 );
+        //storing the phrase inside of the correct array and setting them to false
+        //or not typed.
+        for(var i = 0;i<firstWord.length;i++){
+            correct_letters[firstWord[i]] = false;
+        }
+        bitmap_data = game.make.bitmapData(800,200);
+        bitmap_data.context.font = '64ox Arial';
+        bitmap_data.context.fillStyle = '#ffffff';
+        bitmap_data.context.fillText(firstWord,64,64);
+        bitmap_data.addToWorld();
+
+        game.input.keyboard.addCallbacks(this,null,null,keyPress);
+
     }
     
     function update() {
@@ -39,6 +39,25 @@ function make_main_game_state( game )
         // This function returns the rotation angle that makes it visually match its
         // new trajectory.
         //bouncy.rotation = game.physics.arcade.accelerateToPointer( bouncy, game.input.activePointer, 500, 500, 500 );
+    }
+    function keyPress(char){
+        bitmap_data.cls();
+        var x = 64;
+
+        for(var i =0;i<firstWord.length;i++){
+            var letter = word.charAt(i);
+
+                if(char == letter){}
+                correct_letters[letter] = true;
+        }
+        if(correct_letters[letter]){
+            bitmap_data.context.fillStyle = '#00ff00';
+
+        }
+        else{
+            bitmap_data.context.fillStyle = '#ffffff';
+        }
+        bitmap_data.context.fillText(letter,x,64);
     }
     
     return { "preload": preload, "create": create, "update": update };
