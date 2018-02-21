@@ -31,15 +31,7 @@ function make_main_game_state( game )
         game.input.keyboard.addCallbacks(this,null,null,keyPress);
 
     }
-    
-    function update() {
-        // Accelerate the 'logo' sprite towards the cursor,
-        // accelerating at 500 pixels/second and moving no faster than 500 pixels/second
-        // in X or Y.
-        // This function returns the rotation angle that makes it visually match its
-        // new trajectory.
-        //bouncy.rotation = game.physics.arcade.accelerateToPointer( bouncy, game.input.activePointer, 500, 500, 500 );
-    }
+
     function keyPress(char){
         bitmap_data.cls();
         var x = 64;
@@ -49,6 +41,7 @@ function make_main_game_state( game )
 
                 if(char === letter){}
                 correct_letters[letter] = true;
+            console.log(correct_letters[letter]);
         }
         if(correct_letters[letter]){
             bitmap_data.context.fillStyle = '#00ff00';
