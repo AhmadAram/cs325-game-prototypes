@@ -10,8 +10,8 @@ function make_main_game_state( game )
 
     }
     //defining both phrases that will need to be typed
-    var firstWord = "dance the night away";
-    var secondWord = "tonight is the talent show";
+    var firstWord = "dance";
+    
     var bitmap_data;
     //defining array that is empty
     var correct_letters = [];
