@@ -9,6 +9,7 @@ function preload() {
     game.load.image('dancer4','assets/dancer4.png');
     game.load.image('dancer5','assets/dancer5.png');
     game.load.audio('music',['assets/sound1.mp3','assets/sound1.mp3']);
+
 }
 //inputs needed for dancers DANCE respectivly
 var key1;
@@ -20,8 +21,8 @@ var sound1;
 
 function create() {
     game.stage.backgroundColor = '#0000ff';
-    music = game.add.audio('sound1');
-    music.play();
+    sound1 = game.add.audio('sound1');
+    sound1.play();
     game.add.text(0, 0, 'Press d,a,n,c, or e !', {} );
     game.add.text(20,20,'and Lets Dance!!',{});
 
@@ -71,7 +72,6 @@ function update() {
 //functions called according to which hotkey is pressed
 function addDancer1 () {
     game.add.sprite(game.world.randomX, game.world.randomY, 'dancer1');
-    sound1.play();
 
 }
 
