@@ -9,6 +9,7 @@ function preload() {
     game.load.image('dancer4','assets/dancer4.png');
     game.load.image('dancer5','assets/dancer5.png');
     game.load.audio('music',['assets/sound1.mp3','assets/sound1.mp3']);
+    game.load.image('background','assets/stage.png');
 
 }
 //inputs needed for dancers DANCE respectivly
@@ -20,6 +21,7 @@ var key5;
 var sound1;
 
 function create() {
+    game.add.tileSprite(0,0,1000,600,'background');
     game.stage.backgroundColor = '#0000ff';
     sound1 = game.add.audio('music');
     sound1.play();
