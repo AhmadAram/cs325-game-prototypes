@@ -17,9 +17,10 @@ var key2;
 var key3;
 var key4;
 var key5;
+var sound1;
 
 function create() {
-
+    sound1 = new sound("dance1.mp3");
     game.stage.backgroundColor = '#0000ff';
 
     game.add.text(0, 0, 'Press d,a,n,c, or e !', {} );
@@ -39,7 +40,7 @@ function create() {
     key4 = game.input.keyboard.addKey(Phaser.Keyboard.C);
     key4.onDown.add(addDancer4,this);
 
-    key5 = game.input.keyboard.addKey(Phaser.Keyboard.E);
+    key5 = game.input.keyboard.addKey(Phaser.Keyboard.S);
     key4.onDown.add(addDancer5,this);
 
 
@@ -48,7 +49,7 @@ function create() {
     game.input.keyboard.removeKeyCapture(Phaser.Keyboard.A);
     game.input.keyboard.removeKeyCapture(Phaser.Keyboard.N);
     game.input.keyboard.removeKeyCapture(Phaser.Keyboard.C);
-    game.input.keyboard.removeKeyCapture(Phaser.Keyboard.E);
+    game.input.keyboard.removeKeyCapture(Phaser.Keyboard.S);
 
 
 
@@ -71,6 +72,8 @@ function update() {
 //functions called according to which hotkey is pressed
 function addDancer1 () {
     game.add.sprite(game.world.randomX, game.world.randomY, 'dancer1');
+    sound1.play();
+
 }
 
 function addDancer2 () {
