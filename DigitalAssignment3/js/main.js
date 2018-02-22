@@ -1,66 +1,89 @@
-"use strict";
-var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'phaser-example', { create: create });
+var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update });
 
-var word = "dance";
-var correct = [];
-var bitmap_data;
-function preload(){
+function preload() {
+    //preload all dancers images here
+
+    game.load.image('dancer1','assets/sprites/dancer1.png');
+    game.load.image('dancer2','assets/sprites/dancer2.png');
+    game.load.image('dancer3','assets/sprites/dancer3.png');
+    game.load.image('dancer4','assets/sprites/dancer4.png');
+    game.load.image('dancer5','assets/sprites/dancer5.png');
+
+
 }
+//inputs needed for dancers DANCE respectivly
+var key1;
+var key2;
+var key3;
+var key4;
+var key5;
+
 function create() {
-    //var back = game.add.image(800,0,'background');
-    game.add.image(game.world.centerX, game.world.centerY, 'background').anchor.set(0.5);
-    //  Here we'll create a simple array where each letter of the word to enter represents one element:
-    for (var i = 0; i < word.length; i++)
-    {
-        correct[word[i]] = false;
-    }
 
-    //  This is our BitmapData onto which we'll draw the word being entered
-    bitmap_data = game.make.bitmapData(800, 200);
-    bitmap_data.context.font = '128px Arial';
-    bitmap_data.context.fillStyle = '#ffffff';
-    bitmap_data.context.fillText(word, 64, 64);
-    bitmap_data.addToWorld();
+    game.stage.backgroundColor = '#0000ff';
 
-    //  Capture all key presses
-    game.input.keyboard.addCallbacks(this, null, null, keyPress);
+    game.add.text(0, 0, 'Press d,a,n,c, or e !', {} );
+    game.add.text(20,20,'and Lets Dance!!',{});
+
+
+    //add hotkeys for DANCE and add each dancer as the key is pressed
+    key1 = game.input.keyboard.addKey(Phaser.Keyboard.D);
+    key1.onDown.add(addDancer1, this);
+
+    key2 = game.input.keyboard.addKey(Phaser.Keyboard.A);
+    key2.onDown.add(addDancer2, this);
+
+    key3 = game.input.keyboard.addKey(Phaser.Keyboard.N);
+    key3.onDown.add(addDancer3, this);
+
+    key4 = game.input.keyboard.addKey(Phaser.Keyboard.C);
+    key4.onDown.add(addDancer4,this);
+
+    key5 = game.input.keyboard.addKey(Phaser.Keyboard.E);
+    key4.onDown.add(addDancer5,this);
+
+
+    //  Option 2 - Alternatively, Remove captures so they flood up to the browser too
+    game.input.keyboard.removeKeyCapture(Phaser.Keyboard.D);
+    game.input.keyboard.removeKeyCapture(Phaser.Keyboard.A);
+    game.input.keyboard.removeKeyCapture(Phaser.Keyboard.N);
+    game.input.keyboard.removeKeyCapture(Phaser.Keyboard.C);
+    game.input.keyboard.removeKeyCapture(Phaser.Keyboard.E);
+
+
 
 }
-function update(){
 
-}
-function keyPress(char) {
+function update() {
 
-    //  Clear the BMD
-    bitmap_data.cls();
-
-    //  Set the x value we'll start drawing the text from
-    var x = 64;
-
-    //  Loop through each letter of the word being entered and check them against the key that was pressed
-    for (var i = 0; i < word.length; i++)
+    if (game.input.activePointer.withinGame)
     {
-        var letter = word.charAt(i);
-
-        //  If they pressed one of the letters in the word, flag it as correct
-        if (char === letter)
-        {
-            correct[letter] = true;
-        }
-
-        //  Now draw the word, letter by letter, changing colour as required
-        if (correct[letter])
-        {
-            bitmap_data.context.fillStyle = '#00ff00';
-        }
-        else
-        {
-            bitmap_data.context.fillStyle = '#ffffff';
-        }
-
-        bitmap_data.context.fillText(letter, x, 64);
-
-        x += bitmap_data.context.measureText(letter).width;
+        game.input.enabled = true;
+        game.stage.backgroundColor = '#736357';
+    }
+    else
+    {
+        game.input.enabled = false;
+        game.stage.backgroundColor = '#731111';
     }
 
+}
+//functions called according to which hotkey is pressed
+function addDancer1 () {
+    game.add.sprite(game.world.randomX, game.world.randomY, 'dancer1');
+}
+
+function addDancer2 () {
+    game.add.sprite(game.world.randomX, game.world.randomY, 'dancer2');
+}
+
+function addDancer3 () {
+    game.add.sprite(game.world.randomX, game.world.randomY, 'dancer3');
+}
+function addDancer4 () {
+    game.add.sprite(game.world.randomX, game.world.randomY, 'dancer4');
+}
+
+function addDancer5 () {
+    game.add.sprite(game.world.randomX,game.world.randomY, 'dancer5');
 }
