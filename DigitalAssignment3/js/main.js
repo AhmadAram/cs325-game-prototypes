@@ -21,7 +21,7 @@ var key5;
 var sound1;
 
 function create() {
-    game.add.tileSprite(0,0,1000,600,'background');
+    game.add.tileSprite(0,0,1000,600,'background');//add the backgrouund
     game.stage.backgroundColor = '#0000ff';
     sound1 = game.add.audio('music');
     sound1.play();
