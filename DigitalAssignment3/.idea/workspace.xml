@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="106fcdc7-5cc8-4c69-9e75-5ad9b01319f6" name="Default" comment="" />
+    <list default="true" id="106fcdc7-5cc8-4c69-9e75-5ad9b01319f6" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/assets/phaser.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/assets/sprites/dancer1.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/assets/sprites/dancer2.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/assets/sprites/dancer3.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/assets/sprites/dancer4.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/assets/sprites/dancer5.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/js/main.js" afterPath="$PROJECT_DIR$/js/main.js" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,8 +23,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="810">
-              <caret line="54" column="1" lean-forward="true" selection-start-line="54" selection-start-column="1" selection-end-line="54" selection-end-column="1" />
+            <state relative-caret-position="405">
+              <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -72,11 +81,6 @@
             <path>
               <item name="DigitalAssignment3" type="b2602c69:ProjectViewProjectNode" />
               <item name="DigitalAssignment3" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DigitalAssignment3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DigitalAssignment3" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -203,12 +207,12 @@
       <option name="presentableId" value="Default" />
       <updated>1519244451253</updated>
       <workItem from="1519244452603" duration="2621000" />
-      <workItem from="1519261827072" duration="656000" />
+      <workItem from="1519261827072" duration="990000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3277000" />
+    <option name="totallyTimeSpent" value="3611000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1920" y="0" width="1920" height="1080" extended-state="0" />
@@ -263,8 +267,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="54" column="1" lean-forward="true" selection-start-line="54" selection-start-column="1" selection-end-line="54" selection-end-column="1" />
+        <state relative-caret-position="405">
+          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding />
         </state>
       </provider>

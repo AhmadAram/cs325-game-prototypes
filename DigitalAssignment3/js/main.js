@@ -3,11 +3,11 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: p
 function preload() {
     //preload all dancers images here
 
-    game.load.image('dancer1','assets/sprites/dancer1.png');
-    game.load.image('dancer2','assets/sprites/dancer2.png');
-    game.load.image('dancer3','assets/sprites/dancer3.png');
-    game.load.image('dancer4','assets/sprites/dancer4.png');
-    game.load.image('dancer5','assets/sprites/dancer5.png');
+    game.load.image('dancer1','assets/dancer1.png');
+    game.load.image('dancer2','assets/dancer2.png');
+    game.load.image('dancer3','assets/dancer3.png');
+    game.load.image('dancer4','assets/dancer4.png');
+    game.load.image('dancer5','assets/dancer5.png');
 
 
 }
