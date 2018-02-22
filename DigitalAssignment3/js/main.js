@@ -21,7 +21,7 @@ var sound1;
 
 function create() {
     game.stage.backgroundColor = '#0000ff';
-    sound1 = game.add.audio('sound1');
+    sound1 = game.add.audio('music');
     sound1.play();
     game.add.text(0, 0, 'Press d,a,n,c, or e !', {} );
     game.add.text(20,20,'and Lets Dance!!',{});
