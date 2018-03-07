@@ -35,10 +35,10 @@ window.onload = function() {
         explosionsound = game.add.audio('explosion');
         game.stage.backgroundColor = '#1155CC'//change background color to blueish
 
-        //display the score variable
+        /*display the score variable
         var style = { font: "25px Verdana", fill: "#9999ff", align: "center" };
         var text = game.add.text( game.world.centerX, 15, score, style );
-        text.anchor.setTo( 0.5, 0.0 );
+        text.anchor.setTo( 0.5, 0.0 );*/
         
         
         robots = game.add.group();
@@ -131,6 +131,7 @@ window.onload = function() {
     function collisionHandler(bullet,robots){
         bullet.kill();
         robots.kill();
+        text = null;// set score to null
         score = score + 1;//update scoreboard
         console.log(score);
         explosionsound.play();//play the explosion when the bullets collide
