@@ -80,6 +80,10 @@ window.onload = function() {
         // This function returns the rotation angle that makes it visually match its
         // new trajectory.
         //bouncy.rotation = game.physics.arcade.accelerateToPointer( bouncy, game.input.activePointer, 500, 500, 500 );
+        //score board to count collisions
+        var text = game.add.text( game.world.centerX, 15, score, style );
+        text.anchor.setTo( 0.5, 0.0 );
+
         game.physics.arcade.overlap(bullets,robots,collisionHandler,null,this);
 
         sprite.body.velocity.x=0;
