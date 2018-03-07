@@ -29,6 +29,7 @@ window.onload = function() {
         var bullet;//more then one bullet assigned to the png   
         var explosionsound;  
         var score=0;
+        var text;
   
     
     function create() {
@@ -83,7 +84,7 @@ window.onload = function() {
         //score board to count collisions
         text = null;
         var style = { font: "25px Verdana", fill: "#9999ff", align: "center" };
-        var text = game.add.text( game.world.centerX, 15, score, style );
+        text = game.add.text( game.world.centerX, 15, score, style );
         text.anchor.setTo( 0.5, 0.0 );
 
         game.physics.arcade.overlap(bullets,robots,collisionHandler,null,this);
