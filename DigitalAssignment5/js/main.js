@@ -15,7 +15,7 @@ window.onload = function() {
     //changed these parameters to increase the window size
     function preload() {//used to load everything like asssets into the game before hand
         // Load an image and call it 'logo'.
-        game.load.image('character1','assets/char1.png');//character shooting the bullets
+        game.load.spritesheet('character1','assets/char1.png',27,40);//character shooting the bullets
         game.load.image('bullet','assets/bullet1.png');//bullet being shot by character
         game.load.spritesheet('robots','assets/sprites/robots.png',50,50);
         game.load.audio('explosion',['assets/canonfire.mp3','assets/canonfire.mp3']);//audio sound to play when canons hit teapot
