@@ -17,7 +17,10 @@ window.onload = function() {
         // Load an image and call it 'logo'.
         game.load.image('character1','assets/char1.png');//character shooting the bullets
         game.load.image('bullet','assets/bullet1.png');//bullet being shot by character
-        game.load.spritesheet('robots','assets/sprites/robots.png',32,32);
+        game.load.spritesheet('robots','assets/sprites/robots.png',50,50);
+        game.load.audio('explosion',['assets/canonfire.mp3','assets/canonfire.mp3']);//audio sound to play when canons hit teapot
+   
+
     }  
         var sprite;//variable for sprites
         var bullets;//variable for bullet
@@ -25,24 +28,12 @@ window.onload = function() {
         var cursors;//variable for controls
         var bulletTime = 0;
         var bullet;//more then one bullet assigned to the png   
-        var audio = new Audio('golf.mp3'); 
-    
+        var explosionsound;    
     
     function create() {
-        // Create a sprite at the center of the screen using the 'logo' image.
-        //bouncy = game.add.sprite( game.world.centerX, game.world.centerY, 'logo' );
-        // Anchor the sprite at its center, as opposed to its top-left corner.
-        // so it will be truly centered.
-        //bouncy.anchor.setTo( 0.5, 0.5 );
+        explosionsound = game.add.audio('explosion');
         game.stage.backgroundColor = '#1155CC'//change background color to blueish
-        // Turn on the arcade physics engine for this sprite.
-        //game.physics.enable( bouncy, Phaser.Physics.ARCADE );
-        
-        // Make it bounce off of the world bounds.
-        //bouncy.body.collideWorldBounds = true;
-        
-        // Add some text using a CSS style.
-        // Center it in X, and position its top 15 pixels from the top of the world.
+
         var style = { font: "25px Verdana", fill: "#9999ff", align: "center" };
         var text = game.add.text( game.world.centerX, 15, score, style );
         text.anchor.setTo( 0.5, 0.0 );
@@ -134,6 +125,6 @@ window.onload = function() {
         bullet.kill();
         robots.kill();
         score++;//update scoreboard
-        audio.play();
+        explosionsound.play();//play the explosion when the bullets collide
     }
 }
