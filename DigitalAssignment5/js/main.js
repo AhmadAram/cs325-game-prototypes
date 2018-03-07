@@ -29,7 +29,6 @@ window.onload = function() {
         var bullet;//more then one bullet assigned to the png   
         var explosionsound;  
         var score=0;
-        var text;
   
     
     function create() {
