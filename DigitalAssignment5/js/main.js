@@ -1,5 +1,4 @@
 "use strict";
-var score=0;
 
 window.onload = function() {
     // You can copy-and-paste the code from any of the examples at http://examples.phaser.io here.
@@ -28,12 +27,15 @@ window.onload = function() {
         var cursors;//variable for controls
         var bulletTime = 0;
         var bullet;//more then one bullet assigned to the png   
-        var explosionsound;    
+        var explosionsound;  
+        var score=0;
+  
     
     function create() {
         explosionsound = game.add.audio('explosion');
         game.stage.backgroundColor = '#1155CC'//change background color to blueish
 
+        //display the score variable
         var style = { font: "25px Verdana", fill: "#9999ff", align: "center" };
         var text = game.add.text( game.world.centerX, 15, score, style );
         text.anchor.setTo( 0.5, 0.0 );
@@ -124,7 +126,8 @@ window.onload = function() {
     function collisionHandler(bullet,robots){
         bullet.kill();
         robots.kill();
-        score++;//update scoreboard
+        score = score + 1;//update scoreboard
+        console.log(score);
         explosionsound.play();//play the explosion when the bullets collide
     }
 }
