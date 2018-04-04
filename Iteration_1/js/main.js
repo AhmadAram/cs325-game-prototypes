@@ -65,7 +65,7 @@ function killZombie(zombie) {
 
     //  And give it a new random velocity
     zombie.body.velocity.y = 50 + Math.random() * 200;
-    zombie.body.velocity.x = 50 + Math.random() *200;
+    zombie.body.velocity.x = 50 - Math.random() *200;
 
 }
 
