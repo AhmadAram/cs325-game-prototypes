@@ -3,9 +3,9 @@ var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'phaser-example', { preload:
 
 function preload() {
     //load images for the sprite/human and the bullet to shoot and zombies to move around
-    game.load.image('human', 'assets/sprites/human.png');
-    game.load.image('bullet', 'assets/sprites/bullet.png');
-    game.load.image('zombies', 'assets/sprites/zombies.png');
+    game.load.sprite('human', 'assets/sprites/human.png');
+    game.load.sprite('bullet', 'assets/sprites/bullet.png');
+    game.load.sprite('zombies', 'assets/sprites/zombies.png');
     
 }
 //human character and bullet variables
@@ -65,6 +65,7 @@ function killZombie(zombie) {
 
     //  And give it a new random velocity
     zombie.body.velocity.y = 50 + Math.random() * 200;
+    zombie.body.velocity.x = 50 + Math.random() *200;
 
 }
 
