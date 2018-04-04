@@ -3,9 +3,9 @@ var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'phaser-example', { preload:
 
 function preload() {
     //load images for the sprite/human and the bullet to shoot and zombies to move around
-    game.load.sprite('human', 'assets/sprites/human.png');
-    game.load.sprite('bullet', 'assets/sprites/bullet.png');
-    game.load.sprite('zombies', 'assets/sprites/zombies.png');
+    game.load.spritesheet('human', 'assets/sprites/human.png');
+    game.load.image('bullet', 'assets/sprites/bullet.png');
+    game.load.spritesheet('zombies', 'assets/sprites/zombies.png');
     
 }
 //human character and bullet variables
@@ -31,8 +31,8 @@ function create() {
     bullets.setAll('outOfBoundsKill', true);
     //adds in the human sprite
 
-    sprite = game.add.sprite(400, 300, 'human');
-    //sprite.anchor.set(0.5);
+    sprite = game.add.sprite(80, 80, 'human');
+    sprite.anchor.set(0.5);
 
     game.physics.enable(sprite, Phaser.Physics.ARCADE);
 
