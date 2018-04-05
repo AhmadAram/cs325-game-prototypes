@@ -4,7 +4,7 @@ var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'phaser-example', { preload:
 function preload() {
     //load images for the sprite/human and the bullet to shoot and zombies to move around
     game.load.spritesheet('human', 'assets/sprites/human.png');
-    game.load.image('bullet', 'assets/sprites/bullet.png');
+    game.load.spritesheet('bullet', 'assets/sprites/bullet.png');
     game.load.spritesheet('zombies', 'assets/sprites/zombies.png');
     
 }
