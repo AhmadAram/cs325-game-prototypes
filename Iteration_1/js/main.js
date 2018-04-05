@@ -29,7 +29,7 @@ function create() {
     bullets.enableBody = true;
     bullets.physicsBodyType = Phaser.Physics.ARCADE;
     //craetes the bullets and kills them if they leave the world
-    bullets.createMultiple(50, 'bullet');
+    bullets.createMultiple(80, 'bullet');
     bullets.setAll('checkWorldBounds', true);
     bullets.setAll('outOfBoundsKill', true);
     //adds in the human sprite
