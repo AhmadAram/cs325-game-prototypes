@@ -12,7 +12,7 @@ function preload() {
 var sprite;
 var bullets;
 var zombies;
-var score;
+var score=0;
 
 var fireRate = 100;
 var nextFire = 0;
@@ -33,7 +33,7 @@ function create() {
     //adds in the human sprite
 
     sprite = game.add.sprite(80, 80, 'human');
-    sprite.anchor.set(1);
+    sprite.anchor.set(5);
 
     game.physics.enable(sprite, Phaser.Physics.ARCADE);
 
@@ -99,14 +99,21 @@ function fire() {
 }
 function collisionHandler(bullet,zombies){
     //killZombie();
-    bullets.kill();
-    score = score++;//increment score by one.
+    zombies.kill()//destroy the zombie
+    score = score +1 ;//increment score by one.
 
 
 
 }
 function death(){
+    game.stage.backgroundColor = '#ff0000'; // change the background to red when death
     sprite.kill();
+    stateText.text=" GAME OVER \n Click to restart";
+        stateText.visible = true;
+
+        //the "click to restart" handler
+        game.input.onTap.addOnce(restart,this);
+        zombies.callAll('kill');
 }
 function render() {
 
