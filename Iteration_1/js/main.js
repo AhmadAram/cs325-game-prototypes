@@ -14,8 +14,9 @@ var sprite;
 var bullets;
 var zombies;
 var score=0;
+var stateText;
 
-var fireRate = 100;
+var fireRate = 50;
 var nextFire = 0;
 
 function create() {
@@ -39,7 +40,7 @@ function create() {
     game.physics.enable(sprite, Phaser.Physics.ARCADE);
 
     sprite.body.allowRotation = true;
-
+    
     zombies = game.add.group();
     zombies.enableBody = true;
     zombies.physicsBodyType = Phaser.Physics.ARCADE;
