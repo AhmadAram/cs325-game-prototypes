@@ -113,7 +113,7 @@ function collisionHandler(bullet,zombies){
 function death(){
     game.stage.backgroundColor = '#ff0000'; // change the background to red when death
     sprite.kill();
-    stateText.text=" GAME OVER \n Click to restart";
+    stateText =" GAME OVER \n Click to restart";
         stateText.visible = true;
 
         //the "click to restart" handler
