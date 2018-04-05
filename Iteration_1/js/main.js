@@ -5,7 +5,7 @@ function preload() {
     //load images for the sprite/human and the bullet to shoot and zombies to move around
     game.load.image('human', 'assets/sprites/human.png');
     game.load.spritesheet('bullet', 'assets/sprites/bullet.png');
-    game.load.spritesheet('zombies', 'assets/sprites/zombies.png');
+    game.load.image('zombies', 'assets/sprites/zombies.png');
     game.load.image('background', 'assets/sprites/background.png');
     
 }
@@ -113,12 +113,8 @@ function collisionHandler(bullet,zombies){
 function death(){
     game.stage.backgroundColor = '#ff0000'; // change the background to red when death
     sprite.kill();
-    stateText =" GAME OVER \n Click to restart";
-        stateText.visible = true;
 
-        //the "click to restart" handler
-        game.input.onTap.addOnce(restart,this);
-        zombies.callAll('kill');
+    zombies.callAll('kill');
 }
 function render() {
 
