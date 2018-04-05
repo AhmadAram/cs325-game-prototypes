@@ -6,6 +6,7 @@ function preload() {
     game.load.image('human', 'assets/sprites/human.png');
     game.load.spritesheet('bullet', 'assets/sprites/bullet.png');
     game.load.spritesheet('zombies', 'assets/sprites/zombies.png');
+    game.load.image('background', 'assets/sprites/background.png');
     
 }
 //human character and bullet variables
@@ -18,7 +19,8 @@ var fireRate = 100;
 var nextFire = 0;
 
 function create() {
-
+    //load the background into the backdrop
+    game.add.tileSprite(0,0,800,600,'background');
     game.physics.startSystem(Phaser.Physics.ARCADE);
     //will change background to a field
     game.stage.backgroundColor = '#313131';
