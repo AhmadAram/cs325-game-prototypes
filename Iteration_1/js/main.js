@@ -43,8 +43,8 @@ function create() {
     zombies = game.add.group();
     zombies.enableBody = true;
     zombies.physicsBodyType = Phaser.Physics.ARCADE;
-    sprite.body.velocity.y = 400;
-    sprite.anchor(.5);
+    //sprite.body.velocity.y = 400;
+    sprite.alignIn(game.world.bounds,Phaser.CENTER);
 
 
 
