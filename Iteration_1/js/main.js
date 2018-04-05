@@ -12,6 +12,7 @@ function preload() {
 var sprite;
 var bullets;
 var zombies;
+var score;
 
 var fireRate = 100;
 var nextFire = 0;
@@ -73,6 +74,7 @@ function killZombie(zombie) {
 function update() {
 
     sprite.rotation = game.physics.arcade.angleToPointer(sprite);
+    game.physics.arcade.overlap(bullet,zombies,collisionHandler,null,this);
 
     if (game.input.activePointer.isDown)
     {
@@ -95,9 +97,19 @@ function fire() {
     }
 
 }
+function collisionHandler(bullet,zombies){
+    zombies.kill();
+    bullets.kill();
+    score = score++;//increment score by one.
 
+
+}
+function death(){
+    sprite.kill();
+}
 function render() {
 
     game.debug.text('Active Bullets: ' + bullets.countLiving() + ' / ' + bullets.total, 32, 32);
+    game.debug.text('Score' + score,32,35);
 
 }
