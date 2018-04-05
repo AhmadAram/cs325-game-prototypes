@@ -79,7 +79,7 @@ function update() {
 
     sprite.rotation = game.physics.arcade.angleToPointer(sprite);
     game.physics.arcade.overlap(bullets,zombies,collisionHandler,null,this);
-
+    game.physics.arcade.overlap(zombies,sprite,death,null,this);
     if (game.input.activePointer.isDown)
     {
         fire();
