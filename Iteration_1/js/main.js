@@ -33,7 +33,8 @@ function create() {
     //adds in the human sprite
 
     sprite = game.add.sprite(80, 80, 'human');
-    sprite.anchor.set(5);
+    sprite.body.velocity.x = 0;
+    sprite.body.velocity.y = 0;
 
     game.physics.enable(sprite, Phaser.Physics.ARCADE);
 
