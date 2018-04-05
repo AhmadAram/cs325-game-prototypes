@@ -98,9 +98,10 @@ function fire() {
 
 }
 function collisionHandler(bullet,zombies){
-    zombies.kill();
-    bullets.kill();
+    killZombie();
+    //bullets.kill();
     score = score++;//increment score by one.
+
 
 
 }
