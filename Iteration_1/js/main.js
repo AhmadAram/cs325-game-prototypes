@@ -35,7 +35,6 @@ function create() {
     //adds in the human sprite
 
     sprite = game.add.sprite(80, 80, 'human');
-    sprite.body.velocity.y = 400;
 
     game.physics.enable(sprite, Phaser.Physics.ARCADE);
 
@@ -44,6 +43,8 @@ function create() {
     zombies = game.add.group();
     zombies.enableBody = true;
     zombies.physicsBodyType = Phaser.Physics.ARCADE;
+    sprite.body.velocity.y = 400;
+
 
 
     for (var y = 0; y < 4; y++)
