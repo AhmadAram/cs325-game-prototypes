@@ -44,6 +44,7 @@ function create() {
     zombies.enableBody = true;
     zombies.physicsBodyType = Phaser.Physics.ARCADE;
     sprite.body.velocity.y = 400;
+    sprite.anchor(.5);
 
 
 
