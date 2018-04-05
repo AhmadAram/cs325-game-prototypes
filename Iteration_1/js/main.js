@@ -33,7 +33,7 @@ function create() {
     //adds in the human sprite
 
     sprite = game.add.sprite(80, 80, 'human');
-    sprite.anchor.set(0.5);
+    sprite.anchor.set(400);
 
     game.physics.enable(sprite, Phaser.Physics.ARCADE);
 
@@ -98,8 +98,8 @@ function fire() {
 
 }
 function collisionHandler(bullet,zombies){
-    killZombie();
-    //bullets.kill();
+    //killZombie();
+    bullets.kill();
     score = score++;//increment score by one.
 
 
@@ -111,6 +111,6 @@ function death(){
 function render() {
 
     game.debug.text('Active Bullets: ' + bullets.countLiving() + ' / ' + bullets.total, 32, 32);
-    game.debug.text('Score' + score,32,35);
+    game.debug.text('Score ' + score,40,40);
 
 }
