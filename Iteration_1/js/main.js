@@ -56,7 +56,7 @@ function create() {
             zombies.name = 'zombie' + x.toString() + y.toString();
             zombie.checkWorldBounds = true;
             zombie.events.onOutOfBounds.add(killZombie, this);
-            zombie.body.velocity.y = 10 + Math.random() * 200;
+            zombie.body.velocity.y = 10 + Math.random() * 100;
             zombie.body.velocity.x = 50 +Math.random() *100;//move the zombies to the sides too
         }
     }
