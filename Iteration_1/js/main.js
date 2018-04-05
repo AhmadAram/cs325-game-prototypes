@@ -33,12 +33,12 @@ function create() {
     //adds in the human sprite
 
     sprite = game.add.sprite(80, 80, 'human');
-    sprite.body.velocity.x = 0;
-    sprite.body.velocity.y = 0;
+    sprite.body.velocity.x = 100 ;
+    sprite.body.velocity.y = 200;
 
     game.physics.enable(sprite, Phaser.Physics.ARCADE);
 
-    sprite.body.allowRotation = false;
+    sprite.body.allowRotation = true;
 
     zombies = game.add.group();
     zombies.enableBody = true;
