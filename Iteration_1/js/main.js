@@ -121,7 +121,7 @@ function death(){
 }
 function render() {
 
-    game.debug.text('Active Bullets: ' + bullets.countLiving() + ' / ' + bullets.total, 32, 32);
     game.debug.text('Score ' + score,40,40);
+    game.debug.text('When the game freezes ie. GameOver!',60,60);
 
 }
