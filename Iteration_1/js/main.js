@@ -33,7 +33,7 @@ function create() {
     //adds in the human sprite
 
     sprite = game.add.sprite(80, 80, 'human');
-    sprite.anchor.set(400);
+    sprite.anchor.set(1);
 
     game.physics.enable(sprite, Phaser.Physics.ARCADE);
 
