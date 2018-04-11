@@ -7,9 +7,9 @@ function preload() {
     game.load.spritesheet('bullet', 'assets/sprites/bullet.png');
     game.load.image('zombies', 'assets/sprites/zombies.png');
     game.load.image('background', 'assets/sprites/background.png');
-    game.load.audio('zombieDeath','assets/audio/zombieDeath.mp3');//loads in the audio for the death sound
-    game.load.audio('playerDeath','assets/audio/playerDie.mp3');
-    
+    game.load.audio('zombieDeath',['assets/audio/zombieDeath.mp3','assets/audio/zombieDeath.mp3']);//loads in the audio for the death sound
+    game.load.audio('playerDeath',['assets/audio/playerDie.mp3','assets/audio/playerDie.mp3']);
+
 }
 //human character and bullet variables
 var sprite;
@@ -75,7 +75,7 @@ function create() {
 
 function killZombie(zombie) {
 
-    //  Move the alien to the top of the screen again
+    //  Move the zombie to the top of the screen again
     zombie.reset(zombie.x, 0);
 
     //  And give it a new random velocity
@@ -101,11 +101,11 @@ function update() {
     if(cursors.right.isDown){
         sprite.body.velocity.x = 100;
     }
-    if(cursors.up.isDown){
+    if(cursors.down.isDown){
         sprite.body.velocity.y = 100;
     
     }
-    if(cursors.down.isDown){
+    if(cursors.up.isDown){
         sprite.body.velocity.y = -100;
     }
 
@@ -144,6 +144,6 @@ function death(){
 function render() {
 
     game.debug.text('Score ' + score,40,40);
-    game.debug.text('When the game freezes ie. GameOver!',60,60);
+    game.debug.text('When the Player Disappears ie. GameOver!',60,60);
 
 }
