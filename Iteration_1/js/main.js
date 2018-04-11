@@ -7,8 +7,8 @@ function preload() {
     game.load.spritesheet('bullet', 'assets/sprites/bullet.png');
     game.load.image('zombies', 'assets/sprites/zombies.png');
     game.load.image('background', 'assets/sprites/background.png');
-    game.load.audio('zombieDeath',['assets/audio/zombieDeath.mp3','assets/audio/zombieDeath.mp3']);//loads in the audio for the death sound
-    game.load.audio('playerDeath',['assets/audio/playerDie.mp3','assets/audio/playerDie.mp3']);
+    game.load.audio('zombieDeath',['assets/sounds/zombieDeath.mp3','assets/sounds/zombieDeath.mp3']);//loads in the audio for the death sound
+    game.load.audio('playerDeath',['assets/sounds/playerDie.mp3','assets/sounds/playerDie.mp3']);
 
 }
 //human character and bullet variables
