@@ -7,6 +7,8 @@ function preload() {
     game.load.spritesheet('bullet', 'assets/sprites/bullet.png');
     game.load.image('zombies', 'assets/sprites/zombies.png');
     game.load.image('background', 'assets/sprites/background.png');
+    game.load.audio('zombieDeath','assets/audio/zombieDeath.mp3');//loads in the audio for the death sound
+    game.load.audio('playerDeath','assets/audio/playerDie.mp3');
     
 }
 //human character and bullet variables
@@ -15,11 +17,17 @@ var bullets;
 var zombies;
 var score=0;
 var stateText;
+var deathSound;//sound that will be tied to zombie being shot
+var playerDeath;
+var cursors;//variable to move the player
 
 var fireRate = 50;
 var nextFire = 0;
 
 function create() {
+    //load in the sound for use in the update function/collision handler
+    deathSound = game.add.audio('zombieDeath');
+    playerDied = game.add.audio("playerDeath");
     //load the background into the backdrop
     game.add.tileSprite(0,0,800,600,'background');
     game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -47,6 +55,7 @@ function create() {
     //sprite.body.velocity.y = 400;
     sprite.alignIn(game.world.bounds,Phaser.CENTER);
 
+    cursors = game.input.keyboard.createCursorKeys();
 
 
     for (var y = 0; y < 4; y++)
@@ -85,6 +94,21 @@ function update() {
     {
         fire();
     }
+    if(cursors.left.isDown){
+        sprite.body.velocity.x = -100;
+    
+    }
+    if(cursors.right.isDown){
+        sprite.body.velocity.x = 100;
+    }
+    if(cursors.up.isDown){
+        sprite.body.velocity.y = 100;
+    
+    }
+    if(cursors.down.isDown){
+        sprite.body.velocity.y = -100;
+    }
+
     //on collision kill zombie and update score
 }
 
@@ -106,7 +130,7 @@ function collisionHandler(bullet,zombies){
     //killZombie();
     zombies.kill()//destroy the zombie
     score = score +1 ;//increment score by one.
-
+    deathSound.play();
 
 
 }
@@ -115,6 +139,7 @@ function death(){
     sprite.kill();
 
     zombies.callAll('kill');
+    playerDied.play();
 }
 function render() {
 
