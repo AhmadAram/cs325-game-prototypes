@@ -62,8 +62,8 @@ function create() {
     {
         for (var x = 0; x < 10; x++)
         {
-            var zombie = zombies.create(200 + x * 48, y * 50, 'zombie');
-            zombies.name = 'zombie' + x.toString() + y.toString();
+            var zombie = zombies.create(200 + x * 48, y * 50, 'zombies');
+            zombies.name = 'zombies' + x.toString() + y.toString();
             zombie.checkWorldBounds = true;
             zombie.events.onOutOfBounds.add(killZombie, this);
             zombie.body.velocity.y = 10 + Math.random() * 100;
