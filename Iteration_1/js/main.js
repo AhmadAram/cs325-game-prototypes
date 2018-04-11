@@ -7,9 +7,7 @@ function preload() {
     game.load.spritesheet('bullet', 'assets/sprites/bullet.png');
     game.load.image('zombies', 'assets/sprites/zombies.png');
     game.load.image('background', 'assets/sprites/background.png');
-    game.load.audio('zombieDeath',['assets/sounds/zombieDeath.mp3','assets/sounds/zombieDeath.mp3']);//loads in the audio for the death sound
-    game.load.audio('playerDeath',['assets/sounds/playerDie.mp3','assets/sounds/playerDie.mp3']);
-
+    
 }
 //human character and bullet variables
 var sprite;
@@ -17,17 +15,11 @@ var bullets;
 var zombies;
 var score=0;
 var stateText;
-var deathSound;//sound that will be tied to zombie being shot
-var playerDeath;
-var cursors;//variable to move the player
 
 var fireRate = 50;
 var nextFire = 0;
 
 function create() {
-    //load in the sound for use in the update function/collision handler
-    deathSound = game.add.audio('zombieDeath');
-    playerDied = game.add.audio("playerDeath");
     //load the background into the backdrop
     game.add.tileSprite(0,0,800,600,'background');
     game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -55,15 +47,14 @@ function create() {
     //sprite.body.velocity.y = 400;
     sprite.alignIn(game.world.bounds,Phaser.CENTER);
 
-    cursors = game.input.keyboard.createCursorKeys();
 
 
     for (var y = 0; y < 4; y++)
     {
         for (var x = 0; x < 10; x++)
         {
-            var zombie = zombies.create(200 + x * 48, y * 50, 'zombies');
-            zombies.name = 'zombies' + x.toString() + y.toString();
+            var zombie = zombies.create(200 + x * 48, y * 50, 'zombie');
+            zombies.name = 'zombie' + x.toString() + y.toString();
             zombie.checkWorldBounds = true;
             zombie.events.onOutOfBounds.add(killZombie, this);
             zombie.body.velocity.y = 10 + Math.random() * 100;
@@ -75,7 +66,7 @@ function create() {
 
 function killZombie(zombie) {
 
-    //  Move the zombie to the top of the screen again
+    //  Move the alien to the top of the screen again
     zombie.reset(zombie.x, 0);
 
     //  And give it a new random velocity
@@ -94,21 +85,6 @@ function update() {
     {
         fire();
     }
-    if(cursors.left.isDown){
-        sprite.body.velocity.x = -100;
-    
-    }
-    if(cursors.right.isDown){
-        sprite.body.velocity.x = 100;
-    }
-    if(cursors.down.isDown){
-        sprite.body.velocity.y = 100;
-    
-    }
-    if(cursors.up.isDown){
-        sprite.body.velocity.y = -100;
-    }
-
     //on collision kill zombie and update score
 }
 
@@ -130,7 +106,7 @@ function collisionHandler(bullet,zombies){
     //killZombie();
     zombies.kill()//destroy the zombie
     score = score +1 ;//increment score by one.
-    deathSound.play();
+
 
 
 }
@@ -139,11 +115,10 @@ function death(){
     sprite.kill();
 
     zombies.callAll('kill');
-    playerDied.play();
 }
 function render() {
 
     game.debug.text('Score ' + score,40,40);
-    game.debug.text('When the Player Disappears ie. GameOver!',60,60);
+    game.debug.text('When the game freezes ie. GameOver!',60,60);
 
 }

@@ -145,5 +145,5 @@ function render() {
 
     game.debug.text('Score ' + score,40,40);
     game.debug.text('When the Player Disappears ie. GameOver!',60,60);
-
+    game.debug.text("Controls: Arrow Keys to move, Aim with Mouse, Click to Shoot!",40,80);
 }
