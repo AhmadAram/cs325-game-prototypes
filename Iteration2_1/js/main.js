@@ -72,10 +72,10 @@ function create() {
 
     arrowKeys = game.input.keyboard.createCursorKeys();
     wasd = {
-        up: XV.game.input.keyboard.addKey(Phaser.keyboard.W),
-        down: XV.game.input.keyboard.addKey(Phaser.keyboard.S),
-        left: XV.game.input.keyboard.addKey(Phaser.keyboard.A),
-        right: XV.game.input.keyboard.addKey(Phaser.keyboard.D),
+        up: game.input.keyboard.addKey(Phaser.keyboard.W),
+        down: game.input.keyboard.addKey(Phaser.keyboard.S),
+        left: game.input.keyboard.addKey(Phaser.keyboard.A),
+        right: game.input.keyboard.addKey(Phaser.keyboard.D),
     };
 
     player2Fire = this.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR);//registers spacebar as player one shooting
@@ -88,7 +88,7 @@ function create() {
 function update() {
     //if a collision happens with the bullets ie. player is hit then call collision handler
     game.physics.arcade.overlap(weapon2,player1,collisionHandler1,null,this);
-    game.physics.ARCADE.overlap(weapon1,player2,collisionHandler2,null,this);
+    game.physics.arcade.overlap(weapon1,player2,collisionHandler2,null,this);
         //player one controls based on WASD for left right down and up
 
     if(wasd.up.isDown){
