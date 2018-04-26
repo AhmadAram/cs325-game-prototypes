@@ -35,8 +35,8 @@ function create() {
     //will change background to a field
     game.stage.backgroundColor = '#313131';
 
-    weapon1 = game.add.weapon1(30,'bullet1');
-    weapon2 = game.add.weapon2(30,'bullet2');
+    weapon1 = game.add.weapon(30,'bullet1');
+    weapon2 = game.add.weapon(30,'bullet2');
 
     weapon1.bulletKillType = Phaser.Weapon.KILL_LIFESPAN;
     weapon2.bulletKillType = Phaser.Weapon.KILL_LIFESPAN;
