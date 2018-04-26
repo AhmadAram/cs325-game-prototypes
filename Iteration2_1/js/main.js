@@ -5,7 +5,7 @@ function preload() {
     //load images for the sprite/human and the bullet to shoot and zombies to move around
     game.load.image('player1', 'assets/sprites/player1.png');
     game.load.spritesheet('bullet1', 'assets/sprites/bullet.png');
-    game.load.spritesheet('bullet2'.'assets/sprites/bullet2.png');
+    game.load.spritesheet('bullet2','assets/sprites/bullet2.png');
     game.load.image('background', 'assets/sprites/background.png');
     game.load.audio('playerDeath',['assets/sounds/playerDie.mp3','assets/sounds/playerDie.mp3']);
     game.load.image('player2','assets/sprites/player2.png');
