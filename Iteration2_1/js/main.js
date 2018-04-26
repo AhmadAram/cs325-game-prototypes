@@ -72,10 +72,10 @@ function create() {
 
     arrowKeys = game.input.keyboard.createCursorKeys();
     wasd = {
-        up: game.input.keyboard.addKey(Phaser.keyboard.W),
-        down: game.input.keyboard.addKey(Phaser.keyboard.S),
-        left: game.input.keyboard.addKey(Phaser.keyboard.A),
-        right: game.input.keyboard.addKey(Phaser.keyboard.D),
+        up: this.input.keyboard.addKey(Phaser.keyboard.W),
+        down: this.input.keyboard.addKey(Phaser.keyboard.S),
+        left: this.input.keyboard.addKey(Phaser.keyboard.A),
+        right: this.input.keyboard.addKey(Phaser.keyboard.D),
     };
 
     player2Fire = this.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR);//registers spacebar as player one shooting
