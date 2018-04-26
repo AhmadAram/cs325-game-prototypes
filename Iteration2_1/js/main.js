@@ -4,10 +4,9 @@ var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'phaser-example', { preload:
 function preload() {
     //load images for the sprite/human and the bullet to shoot and zombies to move around
     game.load.image('player1', 'assets/sprites/player1.png');
-    game.load.spritesheet('bullet', 'assets/sprites/bullet.png');
-    game.load.image('zombies', 'assets/sprites/zombies.png');
+    game.load.spritesheet('bullet1', 'assets/sprites/bullet.png');
+    game.load.spritesheet('bullet2'.'assets/sprites/bullet2.png');
     game.load.image('background', 'assets/sprites/background.png');
-    game.load.audio('zombieDeath',['assets/sounds/zombieDeath.mp3','assets/sounds/zombieDeath.mp3']);//loads in the audio for the death sound
     game.load.audio('playerDeath',['assets/sounds/playerDie.mp3','assets/sounds/playerDie.mp3']);
     game.load.image('player2','assets/sprites/player2.png');
 
@@ -15,20 +14,20 @@ function preload() {
 //human character and bullet variables
 var player1;
 var player2;
-var bullets;
-var zombies;
-var score=0;
+var score=0;//player ones health
+var score2 =0;//player 2s health
 var stateText;
 var deathSound;//sound that will be tied to zombie being shot
 var playerDeath;
-var cursors;//variable to move the player
-
-var fireRate = 50;
-var nextFire = 0;
+var arrowKeys;//variable to move the player2
+var weapon1;
+var weapon2;
+var player1Fire;
+var player2Fire;
+var wasd;//keys for player
 
 function create() {
     //load in the sound for use in the update function/collision handler
-    deathSound = game.add.audio('zombieDeath');
     playerDied = game.add.audio("playerDeath");
     //load the background into the backdrop
     game.add.tileSprite(0,0,800,600,'background');
@@ -36,111 +35,132 @@ function create() {
     //will change background to a field
     game.stage.backgroundColor = '#313131';
 
-    bullets = game.add.group();
-    bullets.enableBody = true;
-    bullets.physicsBodyType = Phaser.Physics.ARCADE;
-    //craetes the bullets and kills them if they leave the world
-    bullets.createMultiple(20, 'bullet');
-    bullets.setAll('checkWorldBounds', true);
-    bullets.setAll('outOfBoundsKill', true);
-    //adds in the human sprite
+    weapon1 = game.add.weapon1(30,'bullet1');
+    weapon2 = game.add.weapon2(30,'bullet2');
+
+    weapon1.bulletKillType = Phaser.Weapon.KILL_LIFESPAN;
+    weapon2.bulletKillType = Phaser.Weapon.KILL_LIFESPAN;
+
+    weapon1.bulletSpeed = 400;
+    weapon2.bulletSpeed = 400;
+
+    weapon1.fireRate = 100;
+    weapon2.fireRate = 100;
+
+    weapon1.bulletWorldWrap = false;
+    weapon2.bulletWorldWrap = false;
+
 
     //add the player1 into the game world and player2
     player1 = game.add.sprite(80, 80, 'player1');
     player2 = game.add.sprite(80,80,'player2');
 
-    //apply physics to the two player models
-    game.physics.enable(player1,Phaser.Physics.ARCADE);
-    game.physics.enable(player2,Phaser.Physics.ARCADE);
+    player1.anchor.set(0.5);
+    player2.anchor.set(.10);
 
-    player1.body.allowRotation = true;
-    player2.body.allowRotation = true;
-    
-    
-    //sprite.body.velocity.y = 400;
-    player1.alignIn(game.world.bounds,Phaser.CENTER);
-    player2.alignIn(game.world.bounds,Phaser.CENTER);
+    game.physics.arcade.enable(player1);
+    game.physics.arcade.enable(player2);
 
-    cursors = game.input.keyboard.createCursorKeys();
-    letters = game.input.keyboard.createMultiple();
+    player1.body.drag.set(70);
+    player2.body.drag.set(70);
 
+    player1.body.maxVelocity.set(200);
+    player2.body.maxVelocity.set(200);
 
-}
+    weapon1.trackSprite(player1,0,0,true);
+    weapon2.trackSprite(player2,0,0,true);
 
-function killZombie(zombie) {
+    arrowKeys = game.input.keyboard.createCursorKeys();
+    wasd = {
+        up: XV.game.input.keyboard.addKey(Phaser.keyboard.W),
+        down: XV.game.input.keyboard.addKey(Phaser.keyboard.S),
+        left: XV.game.input.keyboard.addKey(Phaser.keyboard.A),
+        right: XV.game.input.keyboard.addKey(Phaser.keyboard.D),
+    };
 
-    //  Move the zombie to the top of the screen again
-    zombie.reset(zombie.x, 0);
+    player2Fire = this.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR);//registers spacebar as player one shooting
+    player1Fire = this.input.keyboard.addKey(Phaser.keyboard.F);//make the F key fire for player one
 
-    //  And give it a new random velocity
-    zombie.body.velocity.y = 50 + Math.random() * 200;
-    zombie.body.velocity.x = 50 - Math.random() *200;
 
 }
 
 
 function update() {
+    //if a collision happens with the bullets ie. player is hit then call collision handler
+    game.physics.arcade.overlap(weapon2,player1,collisionHandler1,null,this);
+    game.physics.ARCADE.overlap(weapon1,player2,collisionHandler2,null,this);
+        //player one controls based on WASD for left right down and up
 
-    player1.rotation = game.physics.arcade.angleToPointer(player1);
-
-    //game.physics.arcade.overlap(bullets,zombies,collisionHandler,null,this);
-
-    //game.physics.arcade.overlap(zombies,player1,death,null,this);
-
-    if (game.input.activePointer.isDown)
+    if(wasd.up.isDown){
+        game.physics.arcade.accelerationFromRotation(player1.rotation,300,player1.body.acceleration);
+    }
+    else{
+        player1.body.acceleration.set(0);
+    }
+    if (cursors.left.isDown)
     {
-        fire();
+        player1.body.angularVelocity = -300;
     }
-    if(cursors.left.isDown){
-        player1.body.velocity.x = -100;
-    
+    else if (cursors.right.isDown)
+    {
+        player1.body.angularVelocity = 300;
     }
-    if(cursors.right.isDown){
-        player1.body.velocity.x = 100;
-    }
-    if(cursors.down.isDown){
-        player1.body.velocity.y = 100;
-    
-    }
-    if(cursors.up.isDown){
-        player1.body.velocity.y = -100;
+    else
+    {
+        player1.body.angularVelocity = 0;
     }
 
+    if (fireButton.isDown)
+    {
+        weapon1.fire();
+    }
+
+    game.world.wrap(player1, 16);
     //on collision kill zombie and update score
-}
 
-function fire() {
-
-    if (game.time.now > nextFire && bullets.countDead() > 0)
+    if (cursors.up.isDown)
     {
-        nextFire = game.time.now + fireRate;
-
-        var bullet = bullets.getFirstDead();
-
-        bullet.reset(player1.x - 8, player1.y - 8);
-
-        game.physics.arcade.moveToPointer(bullet, 300);
+        game.physics.arcade.accelerationFromRotation(player2.rotation, 300, player2.body.acceleration);
+    }
+    else
+    {
+        player2.body.acceleration.set(0);
     }
 
+    if (cursors.left.isDown)
+    {
+        player2.body.angularVelocity = -300;
+    }
+    else if (cursors.right.isDown)
+    {
+        player2.body.angularVelocity = 300;
+    }
+    else
+    {
+        player2.body.angularVelocity = 0;
+    }
+
+    if (fireButton.isDown)
+    {
+        weapon2.fire();
+    }
+
+    game.world.wrap(player2, 16);
 }
-function collisionHandler(bullet,zombies){
+
+function collisionHandler1(weapon2,player1){
     //killZombie();
-    zombies.kill()//destroy the zombie
-    score = score +1 ;//increment score by one.
+    score2 = score2 +1 ;//increment score by one.
     deathSound.play();
-
-
 }
-function death(){
-    game.stage.backgroundColor = '#ff0000'; // change the background to red when death
-    player1.kill();
-
-    zombies.callAll('kill');
-    playerDied.play();
+function collisionHandler2(weapon1,player2){
+    score = score +1;
+    deathSound.play();
 }
 function render() {
 
     game.debug.text('Score ' + score,40,40);
+    game.debug.text('Health'+score2,70,70);
     game.debug.text('When the Player Disappears ie. GameOver!',60,60);
     game.debug.text("Controls: Arrow Keys to move, Aim with Mouse, Click to Shoot!",40,80);
 }
