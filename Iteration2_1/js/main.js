@@ -110,7 +110,7 @@ function update() {
         player1.body.angularVelocity = 0;
     }
 
-    if (fireButton.isDown)
+    if (player1Fire.isDown)
     {
         weapon1.fire();
     }
@@ -140,7 +140,7 @@ function update() {
         player2.body.angularVelocity = 0;
     }
 
-    if (fireButton.isDown)
+    if (player2Fire.isDown)
     {
         weapon2.fire();
     }
