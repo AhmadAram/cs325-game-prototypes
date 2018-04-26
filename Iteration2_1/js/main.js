@@ -14,8 +14,8 @@ function preload() {
 //human character and bullet variables
 var player1;
 var player2;
-var score=0;//player ones health
-var score2 =0;//player 2s health
+var score=10;//player ones health
+var score2 =10;//player 2s health
 var stateText;
 var deathSound;//sound that will be tied to zombie being shot
 var playerDeath;
@@ -35,8 +35,8 @@ function create() {
     //will change background to a field
     game.stage.backgroundColor = '#313131';
 
-    weapon1 = game.add.weapon(30,'bullet1');
-    weapon2 = game.add.weapon(30,'bullet2');
+    weapon1 = game.add.weapon(100,'bullet1');
+    weapon2 = game.add.weapon(100,'bullet2');
 
     weapon1.bulletKillType = Phaser.Weapon.KILL_LIFESPAN;
     weapon2.bulletKillType = Phaser.Weapon.KILL_LIFESPAN;
@@ -159,8 +159,8 @@ function collisionHandler2(weapon1,player2){
 }
 function render() {
 
-    game.debug.text('Score ' + score,40,40);
-    game.debug.text('Health'+score2,70,70);
-    game.debug.text('When the Player Disappears ie. GameOver!',60,60);
-    game.debug.text("Controls: Arrow Keys to move, Aim with Mouse, Click to Shoot!",40,80);
+    game.debug.text('Health Player 1' + score,40,40);
+    game.debug.text('Health Player 2'+score2,40,60);
+    game.debug.text("Controls: Player 1: WASD to move, F to shoot",40,80);
+    game.debug.text("Controls: Player2 Arrow Keys to Move, SpaceBar to Shoot",40,100);
 }
