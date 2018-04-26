@@ -97,11 +97,11 @@ function update() {
     else{
         player1.body.acceleration.set(0);
     }
-    if (cursors.left.isDown)
+    if (wasd.left.isDown)
     {
         player1.body.angularVelocity = -300;
     }
-    else if (cursors.right.isDown)
+    else if (wasd.right.isDown)
     {
         player1.body.angularVelocity = 300;
     }
@@ -118,7 +118,7 @@ function update() {
     game.world.wrap(player1, 16);
     //on collision kill zombie and update score
 
-    if (cursors.up.isDown)
+    if (arrowKeys.up.isDown)
     {
         game.physics.arcade.accelerationFromRotation(player2.rotation, 300, player2.body.acceleration);
     }
@@ -127,11 +127,11 @@ function update() {
         player2.body.acceleration.set(0);
     }
 
-    if (cursors.left.isDown)
+    if (arrowKeys.left.isDown)
     {
         player2.body.angularVelocity = -300;
     }
-    else if (cursors.right.isDown)
+    else if (arrowKeys.right.isDown)
     {
         player2.body.angularVelocity = 300;
     }
